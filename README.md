@@ -6,7 +6,7 @@ Installing
 - Place the wolfram_cdf directory in your mediawiki/extensions directory
 - add the following to the end of your LocalSettings.php
 
-      require_once("$IP/extensions/wolfram_cdf/CDF.php");
+       require_once("$IP/extensions/wolfram_cdf/CDF.php");
 
 Note that, in order to actually use .cdf files, you will need to ensure that file uploads are enabled (`$wgEnableUploads` is true) and cdf extensions are allowed. For example:
 
@@ -25,7 +25,7 @@ The basic syntax for the cdf extension is:
 
     <cdf width="width in pixels" height="height in pixels">filename</cdf>
 
-When specifying the filename, you *should not* innclude the File: namespace in the filename. You may also provide an absolute instead of a filename to show a CDF file from another server.
+When specifying the filename, you *should not* innclude the `File:` namespace in the filename. You may also provide an absolute instead of a filename to show a CDF file from another server.
 
 Examples:
 
