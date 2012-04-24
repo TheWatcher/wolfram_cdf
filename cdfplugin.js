@@ -38,7 +38,7 @@ $.cdfplugin = {
     },
 
     'embed': function(src,width,height,params) {
-        var content = (this.has_plugin) ? this._getEmbedHtml(src,width,height,params) : this._getDefaultContent(width,height);
+        var content = (this.pluginIsPresent()) ? this._getEmbedHtml(src,width,height,params) : this._getDefaultContent(width,height);
         document.write(content);
     },
 
