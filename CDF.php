@@ -75,13 +75,13 @@ function efRenderCDF($input, $argv, $parser)
 
             $file = wfFindFile($input);
             if($file) {
-                $input = $file -> getViewURL(false);
+                $output = "<script type=\"text/javascript\">jQuery.cdfplugin.embed('".$file -> getViewURL(false)."', $width, $height);</script>\n";
             } else {
-                $input = wfMsg('cdf_badfilename');
+                $output = '<span class="error">'.wfMsg('cdf_badfilename').'<span>';
             }
+        } else {
+            $output = "<script type=\"text/javascript\">jQuery.cdfplugin.embed('$input', $width, $height);</script>\n";
         }
-
-        $output .=  "<script type=\"text/javascript\">jQuery.cdfplugin.embed('$input', $width, $height);</script>\n";
     }
 
     return $output;

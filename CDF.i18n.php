@@ -13,5 +13,5 @@ $messages = array();
  */
 $messages['en'] = array(
         'wolfram_cdf_desc' => 'This extension provides the <nowiki><cdf></nowiki> tag',
-        'cdf_badfilename'  => 'Error in filename',
+        'cdf_badfilename'  => 'CDF extension can not show CDF file: unknown file specified.',
 );
