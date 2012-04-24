@@ -31,11 +31,11 @@ The basic syntax for the cdf extension is:
 
     <cdf width="width in pixels" height="height in pixels">filename</cdf>
 
-When specifying the filename, you do not need to include the `File:` namespace in the filename - it will work with or without it. You may also provide an absolute URL instead of a filename to show a CDF file from another server.
+When specifying the filename, you do not need to include the `File:` namespace in the filename - it will work with or without it. If enabled, you may also provide an absolute URL instead of a filename to show a CDF file from another server.
 
 Examples:
 
     <cdf width="650" height="400">SomeExample.cdf</cdf>
     <cdf width="565" height="589">http://demonstrations.wolfram.com/HobermanCube/HobermanCube.cdf</cdf>
 
-Note that the second example above will only work if `$wgCDFAllowExternalURLs` is set to `true`.
+Note that the second example above will only work if `$wgCDFAllowExternalURLs` is set to `true`; the default is to /not/ show external URLs.
