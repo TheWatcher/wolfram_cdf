@@ -5,16 +5,13 @@
  * To activate this extension, add the following into your LocalSettings.php file:
  * require_once('$IP/extensions/wolfram_cdf/CDF.php');
  *
- * @note This is a very early alpha version of this extension. A more "correct" version 
- *       will be released as soon as possible.
- * 
  * @ingroup Extensions
  * @author Chris Page
  * @version 0.1
- * @link 
- * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
+ * @link
+ * @license GNU General Public License 3.0 or later
  */
- 
+
 /**
  * Protect against register_globals vulnerabilities.
  * This line must be present before any global variable is referenced.
@@ -24,16 +21,17 @@ if( !defined( 'MEDIAWIKI' ) ) {
     die( -1 );
 }
 
-// Extension credits that will show up on Special:Version    
+// Extension credits that will show up on Special:Version
 $wgExtensionCredits['parserhook'][] = array(
-    'path'         => __FILE__,
-    'name'         => 'WolframCDF',
-    'version'      => '0.1.0',
-    'author'       => 'Chris Page', 
-    'url'          => '',
-    'description'  => 'This extension provides the <nowiki><cdf></nowiki> tag'
+    'path'           => __FILE__,
+    'name'           => 'CDF',
+    'version'        => '0.2.0',
+    'author'         => 'Chris Page',
+    'url'            => '',
+    'descriptionmsg' => 'wolfram_cdf_desc'
 );
 
+$wgExtensionMessagesFiles['CDF'] = dirname( __FILE__ ) . '/CDF.i18n.php';
 $wgHooks['ParserFirstCallInit'][] = 'efCDFSetup';
 
 $wgResourceModules['ext.cdf'] = array (
@@ -43,19 +41,19 @@ $wgResourceModules['ext.cdf'] = array (
     'remoteExtPath' => 'wolfram_cdf',
 
     'position' => 'top'
-);                             
+);
 
 function efCDFSetup() {
     global $wgParser;
     global $wgOut;
 
     $wgOut -> addModules('ext.cdf');
-    $wgParser -> setHook("cdf", "renderCDF");
+    $wgParser -> setHook("cdf", "efRenderCDF");
 
     return true;
 }
 
-function renderCDF($input, $argv, $parser) 
+function efRenderCDF($input, $argv, $parser)
 {
     global $wgUser;
     global $wgServer;
@@ -65,17 +63,21 @@ function renderCDF($input, $argv, $parser)
     $height = isset($argv['height']) ? intval($argv['height']) : 240;
 
     $output = '';
-    $style  = 'display: block;';
 
-    // If we have any input, create the popup tags...
+    // If we have any input, create the embed marker
     if($input != '') {
         // If we have anything other than a URL, assume it's a filename
-        if(!preg_match('/^https?:/', $input)) { 
+        if(!preg_match('/^https?:/', $input)) {
+            // Remove File: if present...
+            if(preg_match('/^File:/', $input)) {
+                $input = substr($input, 5);
+            }
+
             $file = wfFindFile($input);
             if($file) {
                 $input = $file -> getViewURL(false);
             } else {
-                $input ="Error in filename";
+                $input = wfMsg('cdf_badfilename');
             }
         }
 
