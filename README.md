@@ -1,4 +1,4 @@
-This is an early alpha version of a MediaWiki extension that will allow Wolfram CDF files to be embedded in wiki pages.
+This is an early version of a MediaWiki extension that will allow Wolfram CDF files to be embedded in wiki pages.
 
 Installing
 ----------
