@@ -25,7 +25,7 @@ The basic syntax for the cdf extension is:
 
     <cdf width="width in pixels" height="height in pixels">filename</cdf>
 
-When specifying the filename, you *should not* innclude the `File:` namespace in the filename. You may also provide an absolute URL instead of a filename to show a CDF file from another server.
+When specifying the filename, you do not need to include the `File:` namespace in the filename - it will work with or without it. You may also provide an absolute URL instead of a filename to show a CDF file from another server.
 
 Examples:
 
