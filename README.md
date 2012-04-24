@@ -10,7 +10,7 @@ To install the extension, you must first obtain a copy of the wolfram_cdf extens
 
         require_once("$IP/extensions/wolfram_cdf/CDF.php");
 
-- if you want to enable the ability to show external .cdf files for added security, add the following to your LocalSettings.php after the above
+- if you want to enable the ability to show external .cdf files (note there may be security issues in doing this), add the following to your LocalSettings.php after the above
 
         $wgCDFAllowExternalURLs = true;
 
