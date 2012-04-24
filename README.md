@@ -38,4 +38,4 @@ Examples:
     <cdf width="650" height="400">SomeExample.cdf</cdf>
     <cdf width="565" height="589">http://demonstrations.wolfram.com/HobermanCube/HobermanCube.cdf</cdf>
 
-Note that the second example above will only work if `$wgCDFAllowExternalURLs` is set to `true`; the default is to /not/ show external URLs.
+Note that the second example above will only work if `$wgCDFAllowExternalURLs` is set to `true`; the default is to *not* show external URLs.
