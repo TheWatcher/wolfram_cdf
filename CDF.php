@@ -23,6 +23,12 @@ if( !defined( 'MEDIAWIKI' ) ) {
     die( -1 );
 }
 
+/** Should http:// or https:// in cdf tags result in a player that will show .cdf files
+ *  from other sites? Set this to true if this feature should be used, false otherwise.
+ */
+$wgCDFAllowExternalURLs = false; // disable external urls by default for security
+
+
 // Extension credits that will show up on Special:Version
 $wgExtensionCredits['parserhook'][] = array(
     'path'           => __FILE__,
@@ -33,9 +39,13 @@ $wgExtensionCredits['parserhook'][] = array(
     'descriptionmsg' => 'wolfram_cdf_desc'
 );
 
+
+// Standard setup stuff...
 $wgExtensionMessagesFiles['CDF'] = dirname( __FILE__ ) . '/CDF.i18n.php';
 $wgHooks['ParserFirstCallInit'][] = 'efCDFSetup';
 
+
+// ResourceLoader information. Note that this uses 'position', and hence needs 1.18+
 $wgResourceModules['ext.cdf'] = array (
     'scripts' => 'cdfplugin.js',
 
@@ -44,6 +54,7 @@ $wgResourceModules['ext.cdf'] = array (
 
     'position' => 'top'
 );
+
 
 function efCDFSetup() {
     global $wgParser;
@@ -55,10 +66,12 @@ function efCDFSetup() {
     return true;
 }
 
+
 function efRenderCDF($input, $argv, $parser)
 {
     global $wgUser;
     global $wgServer;
+    global $wgCDFAllowExternalURLs;
 
     // Grab and convert arguments set for the tag...
     $width  = isset($argv['width'])  ? intval($argv['width']) : 320;
@@ -66,10 +79,11 @@ function efRenderCDF($input, $argv, $parser)
 
     $output = '';
 
-    // If we have any input, create the embed marker
+    // If the tag has any contents, create the embed marker
     if($input != '') {
-        // If we have anything other than a URL, assume it's a filename
-        if(!preg_match('/^https?:/', $input)) {
+        // If the contents are not a probable URL, or external URLs are disabled, treat it as a filename
+        // NB: Yes, I know that this is not an exhaustive URL match.
+        if(!$wgCDFAllowExternalURLs || !preg_match('|^https?://[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(/.*)?$|i', $input)) {
             // Remove File: if present...
             if(preg_match('/^File:/', $input)) {
                 $input = substr($input, 5);
