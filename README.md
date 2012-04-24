@@ -7,8 +7,11 @@ To install the extension, you must first obtain a copy of the wolfram_cdf extens
 
 - Place the wolfram_cdf directory in your mediawiki/extensions directory
 - add the following to the end of your LocalSettings.php
+
         require_once("$IP/extensions/wolfram_cdf/CDF.php");
+
 - if you want to enable the ability to show external .cdf files for added security, add the following to your LocalSettings.php after the above
+
         $wgCDFAllowExternalURLs = true;
 
 Note that, in order to actually use .cdf files, you will need to ensure that file uploads are enabled (`$wgEnableUploads` is `true`) and cdf extensions are allowed. For example:
