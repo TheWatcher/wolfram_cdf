@@ -12,6 +12,6 @@ $messages = array();
  * @author Chris <chris@starforge.co.uk>
  */
 $messages['en'] = array(
-        'wolfram_cdf_desc' => 'This extension provides the <nowiki><cdf></nowiki> tag',
-        'cdf_badfilename'  => 'CDF extension can not show CDF file: unknown file specified.',
+        'wolfram_cdf_desc' => 'This extension provides the <nowiki><cdf></nowiki> tag to show [http://www.wolfram.com/cdf-player/ Wolfram CDF files].',
+        'cdf_badfilename'  => 'The CDF extension can not show the requested CDF file: unknown file specified.',
 );
