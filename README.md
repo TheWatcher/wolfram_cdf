@@ -14,6 +14,10 @@ To install the extension, you must first obtain a copy of the wolfram_cdf extens
 
         $wgCDFAllowExternalURLs = true;
 
+- if you want to display a 'click here to download this CDF' link below each CDF box, add the following to your LocalSettings after the above:
+
+        $wgCDFShowDownloadLink = true;
+
 Note that, in order to actually use .cdf files, you will need to ensure that file uploads are enabled (`$wgEnableUploads` is `true`) and cdf extensions are allowed. For example:
 
     $wgEnableUploads  = true;
